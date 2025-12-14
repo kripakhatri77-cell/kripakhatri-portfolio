@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kripa Khatri — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --purple-1: #6a4eff;
+      --purple-2: #7b61ff;
+      --text: #0b0b0b;
+      --muted: #7a7a7a;
+      --bg: #ffffff;
+      --max-width: 1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Montserrat, 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; -webkit-font-smoothing:antialiased}
+    body{background:var(--bg);color:var(--text);line-height:1.5}
+
+    /* layout container */
+    .wrap{max-width:var(--max-width);margin:0 auto;padding:0 20px}
+
+    /* NAV */
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+    .brand{font-weight:800;color:var(--purple-2);letter-spacing:1px;font-size:26px}
+    .menu{display:flex;gap:22px;align-items:center}
+    .menu a{color:#111;text-decoration:none;font-weight:600;font-size:14px}
+    .hamburger{display:none;border:0;background:transparent;cursor:pointer}
+
+    /* HERO */
+    .hero{min-height:70vh;display:grid;grid-template-columns:1fr 460px;align-items:center;gap:32px;padding:18px 0}
+    .eyebrow{display:flex;align-items:center;gap:20px;font-weight:700;font-size:18px}
+    .rule{height:3px;background:#111;width:220px;margin-left:8px}
+    h1{font-size:56px;line-height:1;margin:12px 0;font-weight:800}
+    .sub{font-weight:700;font-size:16px;color:var(--muted);letter-spacing:1px}
+    .cta{margin-top:20px;display:flex;gap:14px;align-items:center}
+    .btn{font-weight:700;padding:12px 20px;border-radius:10px;border:0;cursor:pointer;font-size:14px}
+    .btn-primary{background:linear-gradient(135deg,var(--purple-1),var(--purple-2));color:#fff;box-shadow:0 12px 30px rgba(117,87,255,0.14)}
+    .btn-outline{background:transparent;border:2px solid var(--purple-2);color:var(--text)}
+    .hero-right img{max-width:100%;height:auto;border-radius:10px}
+
+    /* SECTION TITLES */
+    .section{padding:48px 0}
+    .section h2{font-size:36px;margin:0 0 12px}
+    .section p.lead{color:var(--muted);margin:0 0 28px}
+
+    /* SERVICES GRID */
+    .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+    .service{background:#fff;padding:28px;border-radius:12px;box-shadow:0 6px 20px rgba(10,10,20,0.04);text-align:center}
+    .service .icon{height:86px;width:86px;margin:0 auto 18px;border-radius:12px;background:linear-gradient(180deg,#faf8ff,#f3f0ff);display:grid;place-items:center}
+    .service h3{margin:0 0 10px;font-size:18px}
+    .service p{color:var(--muted);font-size:14px}
+
+    /* PORTFOLIO FILTER + CARDS */
+    .filters{display:flex;gap:22px;margin-bottom:22px;flex-wrap:wrap}
+    .filters button{background:transparent;border:0;padding:8px 6px;cursor:pointer;font-weight:700;color:var(--muted)}
+    .filters button.active{color:var(--purple-2)}
+    .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 6px 20px rgba(10,10,20,0.04)}
+    .card img{width:100%;height:260px;object-fit:cover;display:block}
+    .card .card-body{padding:18px}
+    .card h4{margin:0 0 8px}
+    .card p{color:var(--muted);margin:0;font-size:14px}
+
+    /* TESTIMONIALS (simple slider dots) */
+    .testimonials{position:relative}
+    .testimonial-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .testimonial{background:#fff;padding:22px;border-radius:10px;box-shadow:0 6px 20px rgba(10,10,20,0.04);display:flex;gap:18px;align-items:center}
+    .testimonial img{width:80px;height:80px;border-radius:8px;object-fit:cover}
+    .dots{display:flex;gap:10px;justify-content:center;margin-top:22px}
+    .dot{height:10px;width:10px;border-radius:50%;background:#e6e6e6}
+    .dot.active{background:var(--purple-2)}
+
+    /* CONTACT */
+    .contact-grid{display:grid;grid-template-columns:1fr 380px;gap:28px}
+    form{display:grid;gap:12px}
+    input,textarea{padding:12px;border-radius:8px;border:1px solid #e8e8e8;font-size:14px}
+    textarea{min-height:140px;resize:vertical}
+
+    /* FOOTER */
+    footer{padding:28px 0;color:var(--muted);text-align:center}
+
+    /* RESPONSIVE */
+    @media (max-width:1100px){
+      .hero{grid-template-columns:1fr 360px}
+      .services-grid{grid-template-columns:repeat(2,1fr)}
+      .portfolio-grid{grid-template-columns:repeat(2,1fr)}
+      .testimonial-grid{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:760px){
+      .menu{display:none}
+      .hamburger{display:block}
+      .hero{grid-template-columns:1fr;gap:20px}
+      h1{font-size:36px}
+      .services-grid{grid-template-columns:1fr}
+      .portfolio-grid{grid-template-columns:1fr}
+      .experience-grid{grid-template-columns:1fr}
+      .wrap{padding:0 16px}
+    }
+
+    /* mobile nav slide-down */
+    .mobile-nav{display:none;background:#fff;padding:12px 16px;border-top:1px solid #f0f0f0}
+    .mobile-nav a{display:block;padding:10px 0;color:#111;text-decoration:none;font-weight:600}
+    .mobile-nav.show{display:block}
+
+  </style>
+</head>
+<body>
+  <header class="wrap nav">
+    <div class="brand">KRIPA</div>
+    <nav class="menu">
+      <a href="#home">HOME</a>
+      <a href="#about">ABOUT</a>
+      <a href="#services">SERVICES</a>
+      <a href="#portfolio">PORTFOLIO</a>
+      <a href="#blog">BLOG</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+    <button class="hamburger" aria-label="Toggle menu" id="hamburger">☰</button>
+  </header>
+  <div class="mobile-nav wrap" id="mobileNav">
+    <a href="#home">HOME</a>
+    <a href="#about">ABOUT</a>
+    <a href="#services">SERVICES</a>
+    <a href="#portfolio">PORTFOLIO</a>
+    <a href="#blog">BLOG</a>
+    <a href="#contact">CONTACT</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="home" class="wrap hero">
+    <div>
+      <div class="eyebrow"><div>HELLO</div><div class="rule"></div></div>
+      <h1>I AM KRIPA KHATRI</h1>
+      <div class="sub">UI / UX Designer • Frontend Developer</div>
+      <div class="cta">
+        <button class="btn btn-primary">HIRE ME</button>
+<button class="btn btn-outline">Download CV</button>     
+ </div>
+    </div>
+    <div class="hero-right">
+<img src="image.jpg" alt="">
+    </section>
+
+  <!-- ABOUT / EXPERIENCE -->
+  <section id="about" class="wrap section">
+    <div style="display:flex;gap:28px;align-items:center;flex-wrap:wrap">
+      <div style="flex:1;min-width:260px">
+        <h2>LET’S INTRODUCE ABOUT MYSELF</h2>
+        <p class="lead">I build usable and beautiful interfaces. I focus on accessibility, clean interactions and smooth experiences for web apps and websites.</p>
+        <p style="color:var(--muted)">I am a UI/UX designer and frontend developer with experience in creating responsive designs, prototypes and high-fidelity interfaces that get shipped.</p>
+        <div class="cta" style="margin-top:18px">
+          <button class="btn btn-primary">See my work</button>
+<button class="btn btn-outline">Download CV</button>          </div>
+      </div>
+      <div style="width:420px;min-width:220px;background:linear-gradient(180deg,#faf8ff,#f6f3ff);padding:22px;border-radius:12px;box-shadow:0 12px 40px rgba(117,87,255,0.06)">
+        <div style="font-size:32px;font-weight:800;color:var(--purple-2)">10</div>
+        <div style="font-weight:700;margin-top:-6px">Years Experience Working</div>
+        <div style="margin-top:14px;color:var(--muted)">I help startups and companies design beautiful products and improve user retention through better UX.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="wrap section">
+<h2>SERVICE OFFERS</h2>
+<p class="lead">I offer design and frontend services — from research to production-ready code.</p>
+<div class="services-grid">
+<div class="service"><div class="icon">🖱️</div><h3>WP Developing</h3><p>Creeping for female light years that lesser can't evening heaven isn't bearing tree</p></div>
+<div class="service"><div class="icon">🎨</div><h3>UI/UX Design</h3><p>Design systems, prototypes and easy-to-use interfaces focused on users.</p></div>
+<div class="service"><div class="icon">✈️</div><h3>Web Design</h3><p>Pixel-perfect responsive websites and landing pages.</p></div>
+<div class="service"><div class="icon">🚀</div><h3>SEO Optimize</h3><p>Improve visibility and performance for search engines.</p></div>
+</div>
+</section>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio" class="wrap section">
+    <h2>RECENTLY DONE PROJECTS</h2>
+    <p class="lead">Quality work — projects I’m proud of. Use filters to browse.</p>
+
+    <div class="filters" id="filters">
+      <button data-filter="all" class="active">ALL</button>
+      <button data-filter="popular">POPULAR</button>
+      <button data-filter="latest">LATEST</button>
+      <button data-filter="following">FOLLOWING</button>
+      <button data-filter="upcoming">UPCOMING</button>
+    </div>
+
+    <div class="portfolio-grid" id="portfolioGrid">
+      <!-- sample cards with data-category attributes -->
+      <div class="card" data-category="popular">
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/design/JR5fVhTGuhXbhoy0sZEhtF/Hostel-finding-app?node-id=108-361&embed-host=share" allowfullscreen></iframe>      </div>
+
+      <div class="card" data-category="latest">
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/design/00ywKfEgoBmX4Y3W2Xz1VY/kripa-animation-in-figma-?node-id=0-1&embed-host=share" allowfullscreen></iframe>      </div>
+
+      <div class="card" data-category="popular">
+    <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/design/K51sidcjMDEvVg1liWwV55/Tukee-Foundation?node-id=0-1&embed-host=share" allowfullscreen></iframe>
+        <div class="card-body"><h4>Project C</h4><p>eCommerce UI</p></div>
+      </div>
+            <div class="card" data-category="popular">
+
+      <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/design/y4eVdqBxbz2cc5dQZ8Itor/FLORAL-HETAUDA?node-id=3-33&embed-host=share" allowfullscreen></iframe>
+        <div class="card-body"><h4>Project C</h4><p>eCommerce UI</p></div>
+
+      
+     
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="wrap section testimonials">
+    <h2>CLIENTS SAY ABOUT ME</h2>
+    <p class="lead">Feedback and short testimonials from clients.</p>
+
+    <div class="testimonial-grid" id="testimonials">
+      <div class="testimonial"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="client"><div><strong>Ashwin Pandey</strong><p style="color:var(--muted)">I really love how clean and modern your design looks! The layout is intuitive and easy to navigate.</p></div></div>
+      <div class="testimonial"><img src="https://randomuser.me/api/portraits/men/45.jpg" alt="client"><div><strong>Saswat Pradhan</strong><p style="color:var(--muted)">Great job! The color scheme is very appealing, and the UI feels very user-friendly. Excited to see more of your work</p></div></div>
+    </div>
+    <div class="dots" id="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
+  </section>
+
+  <!-- BLOG (simple list) -->
+  <section id="blog" class="wrap section">
+    <h2>FROM THE BLOG</h2>
+    <p class="lead">Short reads about design and frontend development.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+      <article class="card"><img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=abc" alt=""><div class="card-body"><h4>Design Thinking</h4><p style="color:var(--muted)">A quick guide to start with user-centered design.</p></div></article>
+      <article class="card"><img src="https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=def" alt=""><div class="card-body"><h4>Frontend Tips</h4><p style="color:var(--muted)">Improve your CSS workflow and components.</p></div></article>
+      <article class="card"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=ghi" alt=""><div class="card-body"><h4>Career Advice</h4><p style="color:var(--muted)">How to land your first UI/UX role.</p></div></article>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="wrap section">
+    <h2>CONTACT</h2>
+    <p class="lead">Let's build something great together. Send a message and I will reply shortly.</p>
+    <div class="contact-grid">
+      <form id="contactForm">
+        <input type="text" id="name" placeholder="Your name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="text" id="subject" placeholder="Subject" required>
+        <textarea id="message" placeholder="Message" required></textarea>
+        <div style="display:flex;gap:12px;align-items:center">
+          <button type="submit" class="btn btn-primary">Send Message</button>
+          <div id="formMsg" style="color:var(--muted)"></div>
+        </div>
+      </form>
+
+      <div style="background:#faf8ff;padding:22px;border-radius:12px">
+        <h3>Contact Info</h3>
+        <p style="color:var(--muted)">Phone: <strong>9869770707</strong></p>
+        <p style="color:var(--muted)">Email: <strong>kripakhatri77@gmail.com</strong></p>
+        <p style="color:var(--muted)">Location: Kathmandu, Nepal</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="wrap">
+    <p>&copy; copyright@2025 Kripa Khatri 
+  </footer>
+
+  <script>
+    // MOBILE NAV
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    hamburger.addEventListener('click', ()=> mobileNav.classList.toggle('show'));
+
+    // PORTFOLIO FILTERS
+    const filters = document.querySelectorAll('#filters button');
+    const cards = document.querySelectorAll('#portfolioGrid .card');
+    filters.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        filters.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        cards.forEach(c=>{
+          if(f==='all') c.style.display = 'block';
+          else c.style.display = (c.dataset.category===f) ? 'block' : 'none';
+        });
+      });
+    });
+
+    // SIMPLE TESTIMONIAL ROTATION (auto-change active dot)
+    const dots = Array.from(document.querySelectorAll('#dots .dot'));
+    let dotIndex = 0;
+    setInterval(()=>{
+      dots.forEach(d=>d.classList.remove('active'));
+      dotIndex = (dotIndex + 1) % dots.length;
+      dots[dotIndex].classList.add('active');
+    }, 2500);
+
+    // CONTACT FORM (frontend only) - demos submission
+    const form = document.getElementById('contactForm');
+    const formMsg = document.getElementById('formMsg');
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      // simple validation
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if(!name || !email || !message){
+        formMsg.textContent = 'Please fill all required fields.'; return;
+      }
+      formMsg.textContent = 'Sending...';
+      // simulate a network send
+      setTimeout(()=>{
+        formMsg.textContent = 'Message sent — I will reply soon!';
+        form.reset();
+      },900);
+    });
+
+    // Smooth anchor scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); if(mobileNav.classList.contains('show')) mobileNav.classList.remove('show'); }
+      });
+    });
+  </script>
+</body>
+</html>
